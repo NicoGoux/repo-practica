@@ -8,11 +8,19 @@ public class Viajante extends Empleado{
 	private List<Gasto> listaGastos;
 	private List<Venta> listaVentas;
 	
-	public Viajante(int cuil, String nombre, String apellido, LocalDate fechaIngreso, double sueldo, List<Gasto> listaGastos, List<Venta> listaVentas) {
+	public Viajante(int cuil, String nombre, String apellido, LocalDate fechaIngreso, double sueldo) {
 		super(cuil, nombre, apellido, fechaIngreso, sueldo);
 		this.listaGastos = new ArrayList<Gasto>(1);
-		this.listaVentas = new ArrayList<Venta>(1);
+		this.listaVentas = new ArrayList<Venta>(1);//considero que se agregan los gastos y las ventas con el metodo agregarVentas y agregarGastos
 	}
+	
+	public Viajante(int cuil, String nombre, String apellido, LocalDate fechaIngreso, double sueldo, List<Gasto> listaGastos, List<Venta> listaVentas) {
+		super(cuil, nombre, apellido, fechaIngreso, sueldo);
+		this.listaGastos = listaGastos;
+		this.listaVentas = listaVentas;
+	}
+	
+	
 
 	@Override
 	public double calcularSueldo() {

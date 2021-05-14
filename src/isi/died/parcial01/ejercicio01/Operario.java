@@ -1,6 +1,7 @@
 package isi.died.parcial01.ejercicio01;
 
 import java.time.LocalDate;
+import java.util.ArrayList;
 import java.util.List;
 
 public class Operario extends Empleado{
@@ -9,6 +10,11 @@ public class Operario extends Empleado{
 	public Operario(int cuil, String nombre, String apellido, LocalDate fechaIngreso, double sueldoBasico, List<Viajante> listaViajantes) {
 		super(cuil, nombre, apellido, fechaIngreso, sueldoBasico);
 		this.listaViajantes = listaViajantes;
+	}
+	
+	public Operario(int cuil, String nombre, String apellido, LocalDate fechaIngreso, double sueldoBasico) {
+		super(cuil, nombre, apellido, fechaIngreso, sueldoBasico);
+		this.listaViajantes = new ArrayList<Viajante>(1); //considero que los viajantes se cargaran con el metodo agregar viajante
 	}
 
 	@Override
