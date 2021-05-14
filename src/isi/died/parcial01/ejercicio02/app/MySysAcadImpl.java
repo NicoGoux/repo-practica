@@ -71,9 +71,11 @@ public class MySysAcadImpl implements MySysAcad {
 		e.setNota(nota);
 		
 		if (nota>=6) {
-			List<Inscripcion> cursadasMateria = e.getAlumno().getListaIncripciones().stream()
-																					.filter((i)->(i.getMateria()==e.getMateria()))
-																					.collect(Collectors.toList());
+			List<Inscripcion> cursadasMateria = e.getAlumno().getListaIncripciones()
+															 .stream()
+															 .filter((i)->(i.getMateria()==e.getMateria()))
+															 .collect(Collectors.toList());
+			
 			cursadasMateria.get(cursadasMateria.size()-1).setEstado(Estado.PROMOCIONADO);
 		}
 	}
@@ -81,8 +83,10 @@ public class MySysAcadImpl implements MySysAcad {
 
 	@Override
 	public List<Examen> topNExamenes(Alumno a, Integer n, Integer nota) {
-		List<Examen> listaExamenesMasNota = a.getListaExamenes().stream().filter((e)->(e.getNota()>=nota))
-											.collect(Collectors.toList());
+		List<Examen> listaExamenesMasNota = a.getListaExamenes()
+											 .stream()
+											 .filter((e)->(e.getNota()>=nota))
+											 .collect(Collectors.toList());
 		
 		if (listaExamenesMasNota.size()>n) {
 			
