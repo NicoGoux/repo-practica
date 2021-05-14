@@ -13,6 +13,7 @@ public class Materia {
 	private List<Examen> examenes;
 	private List<Materia> correlativasCursada;
 	private List<Materia> correlativasRendir;
+	private int cupoMaximo;
 	
 	public Materia() {
 		this.id = ID_GENERATOR++;
@@ -63,9 +64,15 @@ public class Materia {
 		this.docentes.add(d);
 	}
 
-	public void addInscripcion(Inscripcion i) {
-		this.inscripciones.add(i);
-		i.setMateria(this);
+	public void addInscripcion(Inscripcion i) throws CuposAgotadosExcepcion {
+		if (this.cupoMaximo>this.inscripciones.size()) {
+			this.inscripciones.add(i);
+			i.setMateria(this);
+		}
+		else {
+			throw new CuposAgotadosExcepcion(this);
+		}
+		
 	}
 	
 	public void addExamen(Examen e) {
